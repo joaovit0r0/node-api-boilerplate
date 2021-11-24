@@ -1,4 +1,4 @@
-import { ConnectionOptions } from 'typeorm';
+import { ConnectionOptions, MssqlParameter } from 'typeorm';
 import { MongoConnectionOptions } from 'typeorm/driver/mongodb/MongoConnectionOptions';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 
@@ -19,6 +19,7 @@ const baseOptions: Omit<ConnectionOptions, 'type'> = {
 // Opções para conexão com MySql
 const mysqlOptions: MysqlConnectionOptions = {
     type: 'mysql',
+    name: 'riot-mysql-api',
     url: process.env.MYSQL_CONNECTION_URL,
     logging: false // Habilitar para visualizar as queries do banco
 };
@@ -34,5 +35,5 @@ const mongoOptions: MongoConnectionOptions = {
 
 export const dbConfig = {
     ...baseOptions,
-    ...mongoOptions
+    ...mysqlOptions
 } as ConnectionOptions;

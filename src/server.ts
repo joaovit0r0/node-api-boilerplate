@@ -7,6 +7,7 @@ import { swaggerConfig } from './config/swagger';
 
 // Endpoints
 import { UserController } from './modules/users/v1';
+import { ClientController } from './modules/client/v1';
 
 const app: App = new App({
     port: Number(process.env.PORT || 8080),
