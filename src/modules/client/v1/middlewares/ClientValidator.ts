@@ -24,6 +24,8 @@ export class ClientValidator extends BaseValidator {
      */
     private static model: Schema = {
         name: BaseValidator.validators.name,
+        email: { in: 'body', isEmail: true, errorMessage: 'email inválido!' },
+        telephone: { in: 'body', isString: true, errorMessage: 'celular/telefone inválido!' },
         id: {
             ...BaseValidator.validators.id(new ClientRepository()),
             errorMessage: 'Cliente não encontrado'
@@ -55,6 +57,8 @@ export class ClientValidator extends BaseValidator {
     public static post(): RequestHandler[] {
         return ClientValidator.validationList({
             name: ClientValidator.model.name,
+            email: ClientValidator.model.email,
+            telephone: ClientValidator.model.telephone,
             duplicate: ClientValidator.model.duplicate
         });
     }
